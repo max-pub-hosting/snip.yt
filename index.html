@@ -1,0 +1,39 @@
+<style>
+*{font-family: Helvetica; font-weight: 300; font-size: 20px; text-align: justify;}
+b,q{display: block;}
+b{font-weight: 500; font-size: 22px; color: darkred;}
+li{ margin: 5px 0; }
+#list{width: 20cm; margin:0 auto;}
+#list>div{margin-bottom: 1cm;}
+</style>
+<div id='list'></div>
+
+
+<script>
+HTML = {
+	page: data => {
+		data.title = data.title.split(' - ')[0].split(' – ')[0].split(' | ')[0];
+		var out = `<b>${data.title}</b>`;
+		data.quotes.forEach(quote=>{
+			out += HTML.snippet(quote);
+		});
+		return `<div>${out}</div>`;
+	},
+	snippet: data => {
+		// return `<q>${data.quote}</q>`;
+		return `<li>${data.quote}</li>`;
+	}
+}
+
+fetch('http://api.max.pub/snippets/?do=list')
+	.then((response) => response.json())
+	.then((snippets) => {
+		console.log('snippets',snippets);
+		var tmp = '';
+		snippets.forEach(snippet=>{
+			tmp += HTML.page(snippet);
+		});
+		document.getElementById('list').innerHTML = tmp;
+	});
+
+</script>
