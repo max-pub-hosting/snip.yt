@@ -3,13 +3,42 @@
 b,q{display: block;}
 b{font-weight: 500; font-size: 22px; color: darkred;}
 li{ margin: 5px 0; }
-#list{width: 20cm; margin:0 auto;}
+#list{width: 20cm; margin:0 auto;margin-top:60px;}
 #list>div{margin-bottom: 1cm;}
+p{margin: 10px 0;}
+header{
+	background: #555;
+	position: fixed;
+	top:0;
+	left:0;
+	right:0;
+	height:40px;
+	color:white;
+}
+header>table{width:100%;}
+.icon{
+	width: 32px;
+}
+time{
+	float:right;
+}
 </style>
+<header>
+<table id='header'><tr>
+	<td>
+		<img class='icon' src='icon.png'/>
+		<span>snip.yt</span>
+	</td>
+	<td>
+		<input type='search' placeholder="search..." />
+	</td>
+</tr></table>
+</header>
 <div id='list'></div>
 
 
 <script>
+MONTHS = "Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec".split(',');
 HTML = {
 	page: data => {
 		data.title = data.title.split(' - ')[0].split(' – ')[0].split(' | ')[0];
@@ -17,11 +46,16 @@ HTML = {
 		data.quotes.forEach(quote=>{
 			out += HTML.snippet(quote);
 		});
+		let domain = data.URL.split('//')[1].split('/')[0];
+		out += `<img src="http://www.google.com/s2/favicons?domain=${domain}"/>`;
+		out += `<i>${domain}</i>`;
+		let d = new Date(Date.parse(data.t));
+		out += `<time>${d.getDate()}. ${MONTHS[d.getMonth()]} ${d.getFullYear()}</time>`;
 		return `<div>${out}</div>`;
 	},
 	snippet: data => {
 		// return `<q>${data.quote}</q>`;
-		return `<li>${data.quote}</li>`;
+		return `<p>${data.quote}</p>`;
 	}
 }
 
