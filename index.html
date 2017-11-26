@@ -1,7 +1,7 @@
 <style>
-*{font-family: Helvetica; font-weight: 300; font-size: 20px; text-align: justify;}
+*{font-family: "Helvetica Neue"; font-weight: 300; font-size: 20px; text-align: justify;}
 b,q{display: block;}
-b{font-weight: 500; font-size: 22px; color: darkred;}
+b{font-weight: 300; font-size: 30px; color: gray;}
 li{ margin: 5px 0; }
 #list{width: 20cm; margin:0 auto;margin-top:60px;}
 #list>div{margin-bottom: 1cm;}
@@ -19,8 +19,14 @@ header>table{width:100%;}
 .icon{
 	width: 32px;
 }
+i{
+	color: silver;
+	font-weight: 20px;
+}
 time{
 	float:right;
+	color: silver;
+	font-weight: 20px;
 }
 </style>
 <header>
@@ -46,7 +52,7 @@ HTML = {
 		data.quotes.forEach(quote=>{
 			out += HTML.snippet(quote);
 		});
-		let domain = data.URL.split('//')[1].split('/')[0];
+		let domain = data.URL.split('//')[1].split('/')[0].split('.').slice(-2).join('.');
 		out += `<img src="http://www.google.com/s2/favicons?domain=${domain}"/>`;
 		out += `<i>${domain}</i>`;
 		let d = new Date(Date.parse(data.t));
