@@ -1,58 +1,23 @@
-<style>
-*{font-family: "Helvetica Neue"; font-weight: 300; font-size: 20px; text-align: justify;}
-body{background:#eee;}
-b,q{display: block;}
-b{font-weight: 300; font-size: 22px; color: gray;}
-li{ margin: 5px 0; }
-#list{width: 20cm; margin:0 auto;margin-top:60px;}
-#list>div{margin-bottom: 0.5cm; background: white;border-radius: 3px; padding:10px;}
+<link rel="stylesheet" type="text/css" href="style.css">
 
-p{
-	margin: 10px 0;
-	font-size: 17px;
-	line-height: 1.4em;
-}
-header{
-	background: #333;
-	position: fixed;
-	top:0;
-	left:0;
-	right:0;
-	height:40px;
-	color:white;
-}
-header>*{
-	color: white;
-	background: transparent;
-}
-header>table{width:100%;}
-.icon{
-	width: 32px;
-}
-i{
-	color: silver;
-	font-size: 15px;
-	font-style: normal;
-	margin-left:7px;
-}
-time{
-	float:right;
-	color: silver;
-	font-size: 15px;
-}
-</style>
-<header>
-<table id='header'><tr>
-	<td>
-		<img class='icon' src='icon.png'/>
-		<span>snip.yt</span>
+
+<table id='header'>
+<tr>
+	<td class='icon'>
+		<img src='icon.png'/>
 	</td>
-	<td>
+	<td class='brand'>
+		snip.yt
+	</td>
+	<td class='search'>
 		<input type='search' placeholder="search..." />
 	</td>
-</tr></table>
-</header>
+	<td class='settings'></td>
+</tr>
+</table>
+
 <div id='list'></div>
+
 
 
 <script>
