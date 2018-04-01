@@ -2,18 +2,18 @@
 
 
 <table id='header'>
-<tr>
-	<td class='icon'>
-		<img src='icon.png'/>
-	</td>
-	<td class='brand'>
-		snip.yt
-	</td>
-	<td class='search'>
-		<input type='search' placeholder="search..." />
-	</td>
-	<td class='settings'></td>
-</tr>
+	<tr>
+		<td class='icon'>
+			<img src='icon.png'/>
+		</td>
+		<td class='brand'>
+			snip.yt
+		</td>
+		<td class='search'>
+			<input type='search' placeholder="search..." />
+		</td>
+		<td class='settings'></td>
+	</tr>
 </table>
 
 <div id='list'></div>
@@ -22,23 +22,23 @@
 
 <script>
 MONTHS = "Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec".split(',');
+		// var snippets = '';
+		// data.quotes.forEach(quote=>{
+		// 	snippets += `<p>${quote.quote}</p>`;
+		// });
 HTML = {
 	page: data => {
 		data.title = data.title.split(' - ')[0].split(' – ')[0].split(' | ')[0];
-		var out = `<b>${data.title}</b>`;
-		data.quotes.forEach(quote=>{
-			out += HTML.snippet(quote);
-		});
-		let domain = data.URL.split('//')[1].split('/')[0].split('.').slice(-2).join('.');
-		out += `<img src="http://www.google.com/s2/favicons?domain=${domain}"/>`;
-		out += `<i>${domain}</i>`;
+		data.domain = data.URL.split('//')[1].split('/')[0].split('.').slice(-2).join('.');
 		let d = new Date(Date.parse(data.t));
-		out += `<time>${d.getDate()}. ${MONTHS[d.getMonth()]} ${d.getFullYear()}</time>`;
-		return `<div>${out}</div>`;
-	},
-	snippet: data => {
-		// return `<q>${data.quote}</q>`;
-		return `<p>${data.quote}</p>`;
+		let snippets = data.quotes.map(item=>`<p>${item.quote}</p>`).join('');
+		return `<div>
+					<b>${data.title}</b>
+					${snippets}
+					<img src="http://www.google.com/s2/favicons?domain=${data.domain}"/>
+					<i>${data.domain}</i>
+					<time>${d.getDate()}. ${MONTHS[d.getMonth()]} ${d.getFullYear()}</time>
+				</div>`;
 	}
 }
 
